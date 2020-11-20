@@ -1,7 +1,7 @@
 // miniprogram/pages/main/main.js
 const notes = {
-  userName: "陈家强",
-  userID: 10086,
+  _id: "陈家强",
+  _openid: "10086",
   data: [{
     date: "2020-10-20",
     events: [{

@@ -1,0 +1,5 @@
+<!--miniprogram/pages/versionError/versionError.wxml-->
+<view class="container">
+  <view>小程序加载失败</view>
+  <view>请下载最新版本微信App</view>
+</view>

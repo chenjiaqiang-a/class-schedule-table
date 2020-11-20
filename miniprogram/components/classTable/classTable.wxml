@@ -1,0 +1,30 @@
+<!--components/classTable/classTable.wxml-->
+<view class="container">
+  <view class="bg-white padding">
+
+    <view class="tr grid text-center">
+      <block wx:for="{{['课序','星期一','星期二','星期三','星期四','星期五','星期六','星期天']}}" wx:key="*this">
+        <view class="th bg-cyan add-border">{{item}}</view>
+      </block>
+    </view>
+
+    <block wx:for="{{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}}" wx:key="*this">
+      
+      <view class="tr grid text-center">
+        <view class="td bg-blue light text-center"></view>
+        <block wx:for="{{[1, 2, 3, 4, 5, 6, 7]}}" wx:key="*this">
+          <view class="td bg-cyan light add-border">
+            <view class="cu-item">
+              <text class="cuIcon-emoji lg text-gray"></text>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view wx:if="{{item == 3}}" class="tr bg-cyan add-border div-bar text-center">午餐</view>
+
+      <view wx:if="{{item == 8}}" class="tr bg-cyan add-border div-bar text-center">晚餐</view>
+
+    </block>
+  </view>
+</view>

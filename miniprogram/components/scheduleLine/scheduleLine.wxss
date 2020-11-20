@@ -1,0 +1,19 @@
+/* components/scheduleLine/scheduleLine.wxss */
+@import "../../colorui/main.wxss";
+@import "../../colorui/icon.wxss";
+
+.container {
+  position: relative;
+}
+
+.add-btn {
+  position: fixed;
+  right: 50rpx;
+  top: 120rpx;
+  z-index: 100;
+}
+
+.content-head {
+  display: flex;
+  justify-content: space-between;
+}

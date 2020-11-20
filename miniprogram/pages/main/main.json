@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "schedule-line": "/components/scheduleLine/scheduleLine",
+    "class-table": "/components/classTable/classTable"
+  }
+}

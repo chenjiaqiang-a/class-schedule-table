@@ -1,0 +1,12 @@
+<!--miniprogram/pages/main/main.wxml-->
+<scroll-view scroll-x class="bg-green nav text-center">
+  <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
+    <text class="cuIcon-sort"></text> 备忘录
+  </view>
+  <view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
+    <text class="cuIcon-calendar"></text> 课表
+  </view>
+</scroll-view>
+
+<schedule-line notes="{{notes}}" wx:if="{{TabCur == 0}}"></schedule-line>
+<class-table wx:if="{{TabCur == 1}}"></class-table>

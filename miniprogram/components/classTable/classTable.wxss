@@ -1,0 +1,30 @@
+/* components/classTable/classTable.wxss */
+@import "../../colorui/main.wxss";
+@import "../../colorui/icon.wxss";
+
+.tr {
+  width: 100%;
+}
+
+.th {
+  width: 12.5%;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-left: 4rpx solid white;
+}
+
+.td {
+  width: 12.5%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-left: 4rpx solid white;
+}
+
+.add-border {
+  border-bottom: 4rpx solid white;
+}
+
+.div-bar {
+  height: 50rpx;
+  line-height: 50rpx;
+}

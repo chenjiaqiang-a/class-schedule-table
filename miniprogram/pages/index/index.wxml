@@ -1,0 +1,10 @@
+<!--index.wxml-->
+
+<view class="container">
+
+  <view class="login-btn">
+    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="cu-btn lg bg-green round shadow"
+      disabled="{{loginSuccess}}">授权登录</button>
+  </view>
+
+</view>

@@ -1,0 +1,36 @@
+<!--components/scheduleLine/scheduleLine.wxml-->
+<view class="container">
+  <view class="add-btn">
+    <button class="cu-btn bg-cyan round shadow lg" style="width: 100rpx; height: 100rpx;">
+      <text class="cuIcon-add lg text-white"></text>
+    </button>
+  </view>
+
+  <view class="cu-timeline">
+    <block wx:for="{{notes}}" wx:for-item="Day" wx:key="date">
+      <view class="cu-time">{{Day.date}}</view>
+      <block wx:for="{{Day.events}}" wx:key="id">
+        <view class="cu-item">
+          <view class="content">
+            <view class="content-head">
+              <view wx:if="{{item.isCompleted}}" class="cu-capsule radius">
+                <view class="cu-tag bg-yellow text-white">已完成</view>
+              </view>
+              <view wx:else class="cu-capsule radius">
+                <view class="cu-tag bg-cyan">Deadline</view>
+                <view class="cu-tag line-cyan">{{item.deadline}}</view>
+              </view>
+              <text class="cuIcon-delete lg text-gray"></text>
+            </view>
+              <view class="margin-top">{{item.content}}</view>
+              <view wx:if="{{!item.isCompleted}}" class="margin-top bg-green light round text-center" style="width: 100rpx; height: 50rpx; line-height: 50rpx;" bindtap="">
+                完成
+              </view>
+            
+            
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+</view>

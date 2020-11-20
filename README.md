@@ -1,7 +1,7 @@
 # class-schedule-table
 ## 功能
 - 登录（index）
-第一次登录，请求权限
+  - 第一次登录，请求权限
 已得到权限直接进入小程序主页面（main）
 - 备忘录（scheduleLine）
   - 添加一条任务

@@ -1,9 +1,37 @@
 <!--components/scheduleLine/scheduleLine.wxml-->
 <view class="container">
   <view class="add-btn">
-    <button class="cu-btn bg-cyan round shadow lg" style="width: 100rpx; height: 100rpx;">
+    <button class="cu-btn bg-cyan round shadow lg" style="width: 100rpx; height: 100rpx;" bindtap="showModal"
+      data-target="Add">
       <text class="cuIcon-add lg text-white"></text>
     </button>
+  </view>
+  <!-- 添加事件的模态对话框 -->
+  <view class="cu-modal {{modalName=='Add'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">添加任务</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        <view class="cu-form-group">
+          <view class="title">Deadline</view>
+          <picker mode="date" value="{{date}}" start="{{date}}" end="{{endDate}}" bindchange="DateChange">
+            <view class="picker">
+              {{date}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button style="width: auto;" class="cu-btn round line-green text-green" bindtap="hideModal">取消</button>
+          <button style="width: auto;" class="cu-btn round bg-green margin-left" bindtap="hideModal">确定</button>
+        </view>
+      </view>
+    </view>
   </view>
 
   <view class="cu-timeline">
@@ -22,12 +50,13 @@
               </view>
               <text class="cuIcon-delete lg text-gray"></text>
             </view>
-              <view class="margin-top">{{item.content}}</view>
-              <view wx:if="{{!item.isCompleted}}" class="margin-top bg-green light round text-center" style="width: 100rpx; height: 50rpx; line-height: 50rpx;" bindtap="">
-                完成
-              </view>
-            
-            
+            <view class="margin-top">{{item.content}}</view>
+            <view wx:if="{{!item.isCompleted}}" class="margin-top bg-green light round text-center"
+              style="width: 100rpx; height: 50rpx; line-height: 50rpx;" bindtap="">
+              完成
+            </view>
+
+
           </view>
         </view>
       </block>

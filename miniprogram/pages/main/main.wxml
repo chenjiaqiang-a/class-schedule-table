@@ -8,5 +8,5 @@
   </view>
 </scroll-view>
 
-<schedule-line notes="{{notes}}" wx:if="{{TabCur == 0}}"></schedule-line>
+<schedule-line notes="{{notes}}" onAdd="{{onAddEvent}}" wx:if="{{TabCur == 0}}"></schedule-line>
 <class-table wx:if="{{TabCur == 1}}"></class-table>

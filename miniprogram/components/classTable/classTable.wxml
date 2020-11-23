@@ -24,8 +24,8 @@
         <view wx:if="{{item == 11}}" class="td bg-blue light text-center">第十二节</view> 
         <block wx:for="{{[1, 2, 3, 4, 5, 6, 7]}}" wx:key="*this">
           <view class="td bg-cyan light add-border">
-            <view class="cu-item">
-              <text class="cuIcon-emoji lg text-gray"></text>  
+            <view class="cu-item" data-time="{{lastTapTime}}" bindtap="doubleClick">
+              <text class="cuIcon-emoji lg text-gray">{{classes}}</text>  
             </view>
           </view>
         </block>

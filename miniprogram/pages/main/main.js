@@ -42,8 +42,8 @@ Page({
     TabCur: 0,
     scrollLeft: 0,
 
-    user: notes.userName,
-    id: notes.userID,
+    userID: notes._openid,
+    id: notes._id,
     notes: notes.data
   },
 

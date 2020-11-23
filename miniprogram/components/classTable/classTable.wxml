@@ -9,13 +9,23 @@
     </view>
 
     <block wx:for="{{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}}" wx:key="*this">
-      
       <view class="tr grid text-center">
-        <view class="td bg-blue light text-center"></view>
+        <view wx:if="{{item == 0}}" class="td bg-blue light text-center">第一节</view>
+        <view wx:if="{{item == 1}}" class="td bg-blue light text-center">第二节</view>
+        <view wx:if="{{item == 2}}" class="td bg-blue light text-center">第三节</view>
+        <view wx:if="{{item == 3}}" class="td bg-blue light text-center">第四节</view>
+        <view wx:if="{{item == 4}}" class="td bg-blue light text-center">第五节</view>
+        <view wx:if="{{item == 5}}" class="td bg-blue light text-center">第六节</view>
+        <view wx:if="{{item == 6}}" class="td bg-blue light text-center">第七节</view>
+        <view wx:if="{{item == 7}}" class="td bg-blue light text-center">第八节</view>
+        <view wx:if="{{item == 8}}" class="td bg-blue light text-center">第九节</view>
+        <view wx:if="{{item == 9}}" class="td bg-blue light text-center">第十节</view>
+        <view wx:if="{{item == 10}}" class="td bg-blue light text-center">第十一节</view>
+        <view wx:if="{{item == 11}}" class="td bg-blue light text-center">第十二节</view> 
         <block wx:for="{{[1, 2, 3, 4, 5, 6, 7]}}" wx:key="*this">
           <view class="td bg-cyan light add-border">
             <view class="cu-item">
-              <text class="cuIcon-emoji lg text-gray"></text>
+              <text class="cuIcon-emoji lg text-gray"></text>  
             </view>
           </view>
         </block>

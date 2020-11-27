@@ -8,30 +8,48 @@
   </view>
   <!-- 添加事件的模态对话框 -->
   <view class="cu-modal {{modalName=='Add'?'show':''}}">
-    <view class="cu-dialog">
-      <view class="cu-bar bg-white justify-end">
-        <view class="content">添加任务</view>
-        <view class="action" bindtap="hideModal">
-          <text class="cuIcon-close text-red"></text>
+    <form bindsubmit="onSubmit" bindreset="onReset">
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+          <view class="content">添加任务</view>
+          <view class="action" bindtap="onReset">
+            <text class="cuIcon-close text-red"></text>
+          </view>
         </view>
-      </view>
-      <view class="padding-xl">
-        <view class="cu-form-group">
-          <view class="title">Deadline</view>
-          <picker mode="date" value="{{date}}" start="{{date}}" end="{{endDate}}" bindchange="DateChange">
-            <view class="picker">
-              {{date}}
+
+        <view class="padding-xl">
+
+          <view class="cu-form-group">
+            <view class="title">Deadline</view>
+            <picker name="deadline" mode="date" value="{{date}}" start="{{date}}" end="{{endDate}}"
+              bindchange="onDateChange">
+              <view class="picker">
+                {{date}}
+              </view>
+            </picker>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">任务</view>
+            <input name="content" placeholder="请输入你的任务安排" bindinput="onContentChange" value="{{content}}"></input>
+          </view>
+
+        </view>
+        <view class="cu-bar bg-white justify-end">
+          <view class="action">
+            <button style="width: auto;" class="cu-btn round line-green text-green" form-type="reset">取消</button>
+            <button style="width: auto;" class="cu-btn round bg-green margin-left" form-type="submit"
+              disabled="{{!hasContent}}">确定</button>
+            <!-- 提交停顿 -->
+            <view class='cu-load load-modal' wx:if="{{loadModal}}">
+              <view class='cuIcon-emojifill text-orange'></view>
+              <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
+              <view class='gray-text'>提交中...</view>
             </view>
-          </picker>
+          </view>
         </view>
+
       </view>
-      <view class="cu-bar bg-white justify-end">
-        <view class="action">
-          <button style="width: auto;" class="cu-btn round line-green text-green" bindtap="hideModal">取消</button>
-          <button style="width: auto;" class="cu-btn round bg-green margin-left" bindtap="hideModal">确定</button>
-        </view>
-      </view>
-    </view>
+    </form>
   </view>
 
   <view class="cu-timeline">

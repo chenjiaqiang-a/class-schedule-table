@@ -56,7 +56,9 @@ Component({
     },
     showModal(e) {
       this.setData({
-        modalName: e.currentTarget.dataset.target
+        modalName: e.currentTarget.dataset.target,
+        noteID: e.target.dataset.noteid, 
+        eventID: e.target.dataset.eventid
       })
     },
     hideModal(e) {
@@ -98,7 +100,7 @@ Component({
 
     onSubmit: function (e) {
       this.setData({
-        loadModal: true
+        loadModalAdd: true
       })
       const event = {
         date: this.data.today,
@@ -112,7 +114,7 @@ Component({
         this.hideModal()
 
         this.setData({
-          loadModal: false,
+          loadModalAdd: false,
           date: date,
           content: "",
           hasContent: false
@@ -120,11 +122,20 @@ Component({
       }, 2000)
     },
 
-    onTapComplete: function (e) {
-      this.properties.onComplete(e.target.dataset.noteid, e.target.dataset.eventid)
+    onComplete: function (e) {
+      this.setData({
+        loadModalCom: true
+      })
+      this.properties.onComplete(this.data.noteID, this.data.eventID)
+      setTimeout(() => {
+        this.hideModal()
+        this.setData({
+          loadModalCom: false
+        })
+      }, 500)
     },
     onTapDelete: function () {
-      
+
     }
   }
 })

@@ -128,8 +128,33 @@ Page({
     }
   },
   onCompleteEvent: function (noteID, eventID) {
-    console.log(noteID)
-    console.log(eventID)
+    const db = wx.cloud.database()
+    let events
+    let k
+    for (k = 0; k < this.data.notes.length; k++) {
+      if (this.data.notes[k]._id === noteID) {
+        events = this.data.notes[k].events
+        break
+      }
+    }
+    for (let i = 0; i < events.length; i++) {
+      if (events[i].id === eventID) {
+        events[i].isCompleted = true
+        break
+      }
+    }
+    db.collection("scheduleLine").doc(noteID).update({
+      data: {
+        events: events
+      },
+      success: (res) => {
+        let notes = this.data.notes
+        notes[k].events = events
+        this.setData({
+          notes:notes
+        })
+      }
+    })
   },
   onDeleteEvent: function () {
 

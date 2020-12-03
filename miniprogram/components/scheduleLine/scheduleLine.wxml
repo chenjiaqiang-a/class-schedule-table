@@ -40,7 +40,7 @@
             <button style="width: auto;" class="cu-btn round bg-green margin-left" form-type="submit"
               disabled="{{!hasContent}}">确定</button>
             <!-- 提交停顿 -->
-            <view class='cu-load load-modal' wx:if="{{loadModal}}">
+            <view class='cu-load load-modal' wx:if="{{loadModalAdd}}">
               <view class='cuIcon-emojifill text-orange'></view>
               <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
               <view class='gray-text'>提交中...</view>
@@ -70,7 +70,8 @@
             </view>
             <view class="margin-top">{{item.content}}</view>
             <view wx:if="{{!item.isCompleted}}" class="margin-top bg-green light round text-center"
-              style="width: 100rpx; height: 50rpx; line-height: 50rpx;" bindtap="onTapComplete" data-noteid="{{Each._id}}" data-eventid="{{item.id}}">
+              style="width: 100rpx; height: 50rpx; line-height: 50rpx;" bindtap="showModal" data-noteid="{{Each._id}}"
+              data-eventid="{{item.id}}" data-target="Complete">
               完成
             </view>
 
@@ -80,4 +81,32 @@
       </block>
     </block>
   </view>
+
+  <!-- 完成任务的模态对话框 -->
+  <view class="cu-modal {{modalName=='Complete'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">提示</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        确认这项任务已经完成了吗？
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button style="width: auto;" class="cu-btn line-green text-green round" bindtap="hideModal">取消</button>
+          <button style="width: auto;" class="cu-btn bg-green margin-left round" bindtap="onComplete">确定</button>
+          <!-- 提交停顿 -->
+          <view class='cu-load load-modal' wx:if="{{loadModalCom}}">
+            <view class='cuIcon-emojifill text-orange'></view>
+            <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
+            <view class='gray-text'>提交中...</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>

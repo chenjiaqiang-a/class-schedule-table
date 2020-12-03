@@ -9,6 +9,12 @@ Component({
     },
     onAdd: {
       type: Function
+    },
+    onComplete: {
+      type: Function
+    },
+    onDelete: {
+      type: Function
     }
   },
 
@@ -112,6 +118,13 @@ Component({
           hasContent: false
         })
       }, 2000)
+    },
+
+    onTapComplete: function (e) {
+      this.properties.onComplete(e.target.dataset.noteid, e.target.dataset.eventid)
+    },
+    onTapDelete: function () {
+      
     }
   }
 })

@@ -53,9 +53,9 @@
   </view>
 
   <view class="cu-timeline">
-    <block wx:for="{{notes}}" wx:for-item="Day" wx:key="date">
-      <view class="cu-time">{{Day.date}}</view>
-      <block wx:for="{{Day.events}}" wx:key="id">
+    <block wx:for="{{notes}}" wx:for-item="Each" wx:key="date">
+      <view class="cu-time">{{Each.date}}</view>
+      <block wx:for="{{Each.events}}" wx:key="id">
         <view class="cu-item">
           <view class="content">
             <view class="content-head">
@@ -70,7 +70,7 @@
             </view>
             <view class="margin-top">{{item.content}}</view>
             <view wx:if="{{!item.isCompleted}}" class="margin-top bg-green light round text-center"
-              style="width: 100rpx; height: 50rpx; line-height: 50rpx;" bindtap="">
+              style="width: 100rpx; height: 50rpx; line-height: 50rpx;" bindtap="onTapComplete" data-noteid="{{Each._id}}" data-eventid="{{item.id}}">
               完成
             </view>
 

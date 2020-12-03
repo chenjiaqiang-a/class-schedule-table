@@ -42,7 +42,9 @@ Page({
 
     notes: [],
 
-    onAdd: null
+    onAddEvent: null,
+    onCompleteEvent: null,
+    onDeleteEvent: null
   },
 
   onLoad: function () {
@@ -65,7 +67,9 @@ Page({
     })
 
     this.setData({
-      onAddEvent: this.onAddEvent
+      onAddEvent: this.onAddEvent,
+      onCompleteEvent: this.onCompleteEvent,
+      onDeleteEvent: this.onDeleteEvent
     })
   },
 
@@ -123,6 +127,13 @@ Page({
       })
     }
   },
+  onCompleteEvent: function (noteID, eventID) {
+    console.log(noteID)
+    console.log(eventID)
+  },
+  onDeleteEvent: function () {
+
+  }, 
 
   tabSelect(e) {
     this.setData({

@@ -35,23 +35,23 @@
 
         </view>
         <view class="cu-bar bg-white justify-end">
-          <view class="action">
+          <view class="action padding">
             <button style="width: auto;" class="cu-btn round line-green text-green" form-type="reset">取消</button>
-            <button style="width: auto;" class="cu-btn round bg-green margin-left" form-type="submit"
+            <button style="width: auto;" class="cu-btn bg-green round" form-type="submit"
               disabled="{{!hasContent}}">确定</button>
-            <!-- 提交停顿 -->
-            <view class='cu-load load-modal' wx:if="{{loadModalAdd}}">
-              <view class='cuIcon-emojifill text-orange'></view>
-              <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
-              <view class='gray-text'>提交中...</view>
-            </view>
+
           </view>
         </view>
 
       </view>
     </form>
   </view>
-
+  <!-- 提交停顿 -->
+  <view class='cu-load load-modal' wx:if="{{loadModalAdd}}">
+    <view class='cuIcon-emojifill text-orange'></view>
+    <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
+    <view class='gray-text'>提交中...</view>
+  </view>
   <view class="cu-timeline">
     <block wx:for="{{notes}}" wx:for-item="Each" wx:key="date">
       <view class="cu-time">{{Each.date}}</view>
@@ -67,7 +67,7 @@
                 <view class="cu-tag line-cyan">{{item.deadline}}</view>
               </view>
               <text class="cuIcon-delete lg text-gray" bindtap="showModal" data-noteid="{{Each._id}}"
-              data-eventid="{{item.id}}" data-target="Delete"></text>
+                data-eventid="{{item.id}}" data-target="Delete"></text>
             </view>
             <view class="margin-top">{{item.content}}</view>
             <view wx:if="{{!item.isCompleted}}" class="margin-top bg-green light round text-center"
@@ -96,18 +96,19 @@
         确认删除这项任务吗？
       </view>
       <view class="cu-bar bg-white justify-end">
-        <view class="action">
+        <view class="action padding">
           <button style="width: auto;" class="cu-btn line-green text-green round" bindtap="hideModal">取消</button>
           <button style="width: auto;" class="cu-btn bg-green margin-left round" bindtap="onDelete">确定</button>
-          <!-- 提交停顿 -->
-          <view class='cu-load load-modal' wx:if="{{loadModalDel}}">
-            <view class='cuIcon-emojifill text-orange'></view>
-            <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
-            <view class='gray-text'>删除中...</view>
-          </view>
+
         </view>
       </view>
     </view>
+  </view>
+  <!-- 提交停顿 -->
+  <view class='cu-load load-modal' wx:if="{{loadModalDel}}">
+    <view class='cuIcon-emojifill text-orange'></view>
+    <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
+    <view class='gray-text'>删除中...</view>
   </view>
 
   <!-- 完成任务的模态对话框 -->
@@ -123,18 +124,19 @@
         确认这项任务已经完成了吗？
       </view>
       <view class="cu-bar bg-white justify-end">
-        <view class="action">
+        <view class="action padding">
           <button style="width: auto;" class="cu-btn line-green text-green round" bindtap="hideModal">取消</button>
           <button style="width: auto;" class="cu-btn bg-green margin-left round" bindtap="onComplete">确定</button>
-          <!-- 提交停顿 -->
-          <view class='cu-load load-modal' wx:if="{{loadModalCom}}">
-            <view class='cuIcon-emojifill text-orange'></view>
-            <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
-            <view class='gray-text'>提交中...</view>
-          </view>
+
         </view>
       </view>
     </view>
+  </view>
+  <!-- 提交停顿 -->
+  <view class='cu-load load-modal' wx:if="{{loadModalCom}}">
+    <view class='cuIcon-emojifill text-orange'></view>
+    <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
+    <view class='gray-text'>提交中...</view>
   </view>
 
 </view>

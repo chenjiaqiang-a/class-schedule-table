@@ -55,11 +55,17 @@ Component({
       return Y + "-" + M + "-" + D
     },
     showModal(e) {
-      this.setData({
-        modalName: e.currentTarget.dataset.target,
-        noteID: e.target.dataset.noteid, 
-        eventID: e.target.dataset.eventid
-      })
+      if (e.currentTarget.dataset.target == "Add") {
+        this.setData({
+          modalName: e.currentTarget.dataset.target
+        })
+      } else {
+        this.setData({
+          modalName: e.currentTarget.dataset.target,
+          noteID: e.target.dataset.noteid, 
+          eventID: e.target.dataset.eventid
+        })
+      }
     },
     hideModal(e) {
       this.setData({
@@ -119,7 +125,7 @@ Component({
           content: "",
           hasContent: false
         })
-      }, 2000)
+      }, 500)
     },
 
     onComplete: function () {

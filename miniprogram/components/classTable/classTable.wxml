@@ -21,30 +21,30 @@
         <view wx:if="{{item == 8}}" class="td bg-blue light text-center">第九节</view>
         <view wx:if="{{item == 9}}" class="td bg-blue light text-center">第十节</view>
         <view wx:if="{{item == 10}}" class="td bg-blue light text-center">十一节</view>
-        <view wx:if="{{item == 11}}" class="td bg-blue light text-center">十二节</view> 
+        <view wx:if="{{item == 11}}" class="td bg-blue light text-center">十二节</view>
         <block wx:for="{{[1, 2, 3, 4, 5, 6, 7]}}" wx:key="*this">
           <view class="td bg-cyan light add-border">
             <view class="cu-item" data-time="{{lastTapTime}}" bindtap="doubleClick">
-              <text class="cuIcon-emoji lg text-gray">{{classes.classname}}</text>  
+              <text class="cuIcon-emoji lg text-gray">{{classes.classname}}</text>
               <view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
-  <view class="cu-dialog">
-    <view class="cu-bar bg-white justify-end">
-      <view class="content">Modal标题</view>
-      <view class="action" bindtap="hideModal">
-        <text class="cuIcon-close text-red"></text>
-      </view>
-    </view>
-    <view class="padding-xl">
-      Modal 内容。
-    </view>
-    <view class="cu-bar bg-white">
-      <view class="action margin-0 flex-sub text-green " bindtap="hideModal">
-        <text class="cuIcon-moneybag"></text>微信支付</view>
-      <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
-      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">确定</view>
-    </view>
-  </view>
-</view>
+                <view class="cu-dialog">
+                  <view class="cu-bar bg-white justify-end">
+                    <view class="content">Modal标题</view>
+                    <view class="action" bindtap="hideModal">
+                      <text class="cuIcon-close text-red"></text>
+                    </view>
+                  </view>
+                  <view class="padding-xl">
+                    Modal 内容。
+                  </view>
+                  <view class="cu-bar bg-white">
+                    <view class="action margin-0 flex-sub text-green " bindtap="hideModal">
+                      <text class="cuIcon-moneybag"></text>微信支付</view>
+                    <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
+                    <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">确定</view>
+                  </view>
+                </view>
+              </view>
             </view>
           </view>
         </block>

@@ -122,7 +122,7 @@ Component({
       }, 2000)
     },
 
-    onComplete: function (e) {
+    onComplete: function () {
       this.setData({
         loadModalCom: true
       })
@@ -134,8 +134,17 @@ Component({
         })
       }, 500)
     },
-    onTapDelete: function () {
-
+    onDelete: function () {
+      this.setData({
+        loadModalDel: true
+      })
+      this.properties.onDelete(this.data.noteID, this.data.eventID)
+      setTimeout(() => {
+        this.hideModal()
+        this.setData({
+          loadModalDel: false
+        })
+      }, 500)
     }
   }
 })

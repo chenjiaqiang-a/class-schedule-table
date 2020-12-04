@@ -156,8 +156,57 @@ Page({
       }
     })
   },
-  onDeleteEvent: function () {
-
+  onDeleteEvent: function (noteID, eventID) {
+    const db = wx.cloud.database()
+    let events = []
+    let e = null
+    let pos = 0
+    for (pos = 0; pos < this.data.notes.length; pos++) {
+      if (this.data.notes[pos]._id == noteID) {
+        e = this.data.notes[pos].events
+        break
+      }
+    }
+    for (let i = 0; i < e.length; i++) {
+      if (e[i].id == eventID) {
+        continue
+      }
+      events.push(e[i])
+    }
+    console.log(events)
+    if (events.length > 0) {
+      console.log("update")
+      db.collection("scheduleLine").doc(noteID).update({
+        data: {
+          events: events
+        },
+        success: () => {
+          
+          const notes = this.data.notes
+          notes[pos].events = events
+          this.setData({
+            notes: notes
+          })
+        },
+      })
+    } else {
+      console.log("remove")
+      db.collection("scheduleLine").doc(noteID).remove({
+        success: () => {
+          
+          const notes = []
+          for (let i = 0; i < this.data.notes.length; i++) {
+            if(this.data.notes[i]._id === noteID) {
+              continue
+            }
+            notes.push(this.data.notes[i])
+          }
+          this.setData({
+            notes:notes
+          })
+        }
+      })
+    }
   }, 
 
   tabSelect(e) {

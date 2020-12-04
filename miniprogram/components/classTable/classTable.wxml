@@ -24,36 +24,33 @@
         <view wx:if="{{item == 11}}" class="td bg-blue light text-center">十二节</view>
         <block wx:for="{{[1, 2, 3, 4, 5, 6, 7]}}" wx:key="*this">
           <view class="td bg-cyan light add-border">
-            <view class="cu-item" data-time="{{lastTapTime}}" bindtap="doubleClick">
-              <text class="cuIcon-emoji lg text-gray">{{classes.classname}}</text>
+            <view class="cu-item" data-time="{{lastTapTime}}" bindtap="showModal" data-target="DialogModal2" >
               <view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
-                <view class="cu-dialog">
+                <view class="cu-dialog"> 
                   <view class="cu-bar bg-white justify-end">
-                    <view class="content">Modal标题</view>
+                    <view class="content">课程信息</view>
                     <view class="action" bindtap="hideModal">
                       <text class="cuIcon-close text-red"></text>
                     </view>
                   </view>
                   <view class="padding-xl">
-                    Modal 内容。
+                    {{classes.classname}}
                   </view>
                   <view class="cu-bar bg-white">
-                    <view class="action margin-0 flex-sub text-green " bindtap="hideModal">
-                      <text class="cuIcon-moneybag"></text>微信支付</view>
-                    <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
-                    <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">确定</view>
+                    <view class="action margin-0 flex-sub text-green ">
+                      <text class="action margin-0 flex-sub text-green solid-left">修改</text>
+                    </view>
+                    <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">返回</view>
                   </view>
                 </view>
               </view>
+              <text class="cuIcon-emoji lg text-gray">{{classes.classname}}</text>  
             </view>
           </view>
         </block>
       </view>
-
       <view wx:if="{{item == 3}}" class="tr bg-cyan add-border div-bar text-center">午餐</view>
-
       <view wx:if="{{item == 8}}" class="tr bg-cyan add-border div-bar text-center">晚餐</view>
-
     </block>
   </view>
 </view>

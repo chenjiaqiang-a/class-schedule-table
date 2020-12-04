@@ -24,16 +24,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    doubleClick: function (e) {
+    showModal(e) {
       var curTime = e.timeStamp
       var lastTime = e.currentTarget.dataset.time  // 通过e.currentTarget.dataset.time 访问到绑定到该组件的自定义数据
       if (curTime - lastTime > 0) {
-        if (curTime - lastTime < 300) {//是双击事件
-          if(db.collection('classTable').doc('2a7b532a5fc062ec006cf5df426b8c57').get({
-            success: res => {
-              res.data == null
-            }}
-          )){//课表内是空的 
+        if (curTime - lastTime < 300) { // 是双击事件
             const db = wx.cloud.database()
             db.collection("classTable").add({
               data:{
@@ -56,26 +51,31 @@ Component({
                 })
               }
             })
-          }else{//若不是空的则修改数据
-            db.collection('classTable').doc('2a7b532a5fc062ec006cf5df426b8c57').update({
-              data: {
-                classname:'',
-                    teachername:'',
-                    place:'',
-                    weeks:''
-              },
-              success: res => {
-                wx.showToast({
-                  title: '修改成功',
-                })
-              }
-            })
-          }
         }
       }
       this.setData({
-        lastTapTime: curTime
+        modalName: e.currentTarget.dataset.target,
+        lastTapTime: curTime,
       })
-    }
-  }
+    },
+
+    hideModal(e) {
+      this.setData({
+        modalName: null
+      })
+    },
+    ChooseCheckbox(e) {
+      let items = this.data.checkbox;
+      let values = e.currentTarget.dataset.value;
+      for (let i = 0, lenI = items.length; i < lenI; ++i) {
+        if (items[i].value == values) {
+          items[i].checked = !items[i].checked;
+          break
+        }
+      }
+      this.setData({
+        checkbox: items
+      })
+    }   
+}
 })

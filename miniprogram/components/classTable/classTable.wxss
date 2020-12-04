@@ -7,17 +7,33 @@
 }
 
 .th {
-  width: 12.5%;
+  width: 13%;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-left: 4rpx solid white;
+}
+
+.th-order {
+  width: 9%;
   height: 70rpx;
   line-height: 70rpx;
   border-left: 4rpx solid white;
 }
 
 .td {
-  width: 12.5%;
+  width: 13%;
   height: 120rpx;
-  line-height: 120rpx;
   border-left: 4rpx solid white;
+  line-height: 100rpx;
+  writing-mode: vertical-rl;
+}
+
+.td-order {
+  width: 9%;
+  height: 120rpx;
+  border-left: 4rpx solid white;
+  line-height: 70rpx;
+  writing-mode: vertical-rl;
 }
 
 .add-border {

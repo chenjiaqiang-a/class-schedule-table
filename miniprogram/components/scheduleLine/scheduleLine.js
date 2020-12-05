@@ -62,8 +62,8 @@ Component({
       } else {
         this.setData({
           modalName: e.currentTarget.dataset.target,
-          noteID: e.target.dataset.noteid, 
-          eventID: e.target.dataset.eventid
+          noteID: e.currentTarget.dataset.noteid, 
+          eventID: e.currentTarget.dataset.eventid
         })
       }
     },

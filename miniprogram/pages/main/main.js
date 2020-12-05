@@ -79,7 +79,6 @@ Page({
           }]
         },
         success: (res) => {
-          console.log(res)
           const note = [{
             _id: res._id,
             _openid: app.globalData.openid,

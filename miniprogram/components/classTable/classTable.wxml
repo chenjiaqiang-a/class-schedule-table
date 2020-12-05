@@ -1,7 +1,7 @@
 <!--components/classTable/classTable.wxml-->
 <view class="container">
   <view class="bg-white padding">
-
+    <!--表头-->
     <view class="tr grid text-center">
       <block wx:for="{{['课序','星期一','星期二','星期三','星期四','星期五','星期六','星期天']}}" wx:key="*this">
         <view wx:if="{{index == 0}}" class="th-order bg-cyan add-border">{{item}}</view>
@@ -11,6 +11,7 @@
 
     <block wx:for="{{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}}" wx:key="*this">
       <view class="tr grid text-center">
+        <!--表侧-->
         <view wx:if="{{item == 0}}" class="td-order bg-blue light text-center add-border">第一节</view>
         <view wx:if="{{item == 1}}" class="td-order bg-blue light text-center add-border">第二节</view>
         <view wx:if="{{item == 2}}" class="td-order bg-blue light text-center add-border">第三节</view>
@@ -23,6 +24,7 @@
         <view wx:if="{{item == 9}}" class="td-order bg-blue light text-center add-border">第十节</view>
         <view wx:if="{{item == 10}}" class="td-order bg-blue light text-center add-border">十一节</view>
         <view wx:if="{{item == 11}}" class="td-order bg-blue light text-center add-border">十二节</view>
+        <!--表的核心：课程部分-->
         <block wx:for="{{[1, 2, 3, 4, 5, 6, 7]}}" wx:key="*this">
           <view class="td bg-cyan light add-border">
             <view class="cu-item" data-time="{{lastTapTime}}" bindtap="showModal" data-target="DialogModal2" >
@@ -50,6 +52,7 @@
           </view>
         </block>
       </view>
+      
       <view wx:if="{{item == 3}}" class="tr bg-cyan add-border div-bar text-center">午餐</view>
       <view wx:if="{{item == 8}}" class="tr bg-cyan add-border div-bar text-center">晚餐</view>
     </block>

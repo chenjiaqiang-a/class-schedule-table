@@ -11,6 +11,5 @@
     "navigationBarTitleText": "C.S.Table",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "sitemapLocation": "sitemap.json"
 }

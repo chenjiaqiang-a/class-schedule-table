@@ -38,15 +38,7 @@
   },
   "appid": "wxd6ffab169aa3d77e",
   "projectname": "class-schedule-table",
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "libVersion": "2.14.1",
-=======
   "libVersion": "2.14.0",
->>>>>>> master
-=======
-  "libVersion": "2.14.0",
->>>>>>> master
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",

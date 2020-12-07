@@ -5,7 +5,7 @@ Component({
    */
   properties: {
     notes: {
-      type: Object
+      type: Array
     },
     onAdd: {
       type: Function

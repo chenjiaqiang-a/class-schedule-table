@@ -9,4 +9,4 @@
 </scroll-view>
 
 <schedule-line notes="{{notes}}" onAdd="{{onAddEvent}}" onComplete="{{onCompleteEvent}}" onDelete="{{onDeleteEvent}}" wx:if="{{TabCur == 0}}"></schedule-line>
-<class-table wx:if="{{TabCur == 1}}"></class-table>
+<class-table classSet="{{classSet}}" wx:if="{{TabCur == 1}}"></class-table>

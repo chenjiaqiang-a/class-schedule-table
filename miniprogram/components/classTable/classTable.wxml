@@ -1,60 +1,97 @@
 <!--components/classTable/classTable.wxml-->
 <view class="container">
   <view class="bg-white padding">
-    <!--表头-->
-    <view class="tr grid text-center">
-      <block wx:for="{{['课序','星期一','星期二','星期三','星期四','星期五','星期六','星期天']}}" wx:key="*this">
-        <view wx:if="{{index == 0}}" class="th-order bg-cyan add-border">{{item}}</view>
-        <view wx:else class="th bg-cyan add-border">{{item}}</view>
-      </block>
-    </view>
+    <!--早上的课程-->
+    <view class="table grid text-center">
+      <view class="table-col" style="width: 9%;">
+        <view class="table-row bg-cyan" style="height: 70rpx; line-height: 70rpx;">课序</view>
+        <view class="table-row text-v bg-blue light" style="height: 240rpx; line-height: 70rpx;"> 第一大节</view>
+        <view class="table-row text-v bg-blue light" style="height: 240rpx; line-height: 70rpx;"> 第二大节</view>
+      </view>
+      <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col"
+        style="width: 13%;">
+        <view class="table-row bg-cyan" style="height: 70rpx; line-height: 70rpx;">{{weekDays[col]}}</view>
 
-    <block wx:for="{{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}}" wx:key="*this">
-      <view class="tr grid text-center">
-        <!--表侧-->
-        <view wx:if="{{item == 0}}" class="td-order bg-blue light text-center add-border">第一节</view>
-        <view wx:if="{{item == 1}}" class="td-order bg-blue light text-center add-border">第二节</view>
-        <view wx:if="{{item == 2}}" class="td-order bg-blue light text-center add-border">第三节</view>
-        <view wx:if="{{item == 3}}" class="td-order bg-blue light text-center add-border">第四节</view>
-        <view wx:if="{{item == 4}}" class="td-order bg-blue light text-center add-border">第五节</view>
-        <view wx:if="{{item == 5}}" class="td-order bg-blue light text-center add-border">第六节</view>
-        <view wx:if="{{item == 6}}" class="td-order bg-blue light text-center add-border">第七节</view>
-        <view wx:if="{{item == 7}}" class="td-order bg-blue light text-center add-border">第八节</view>
-        <view wx:if="{{item == 8}}" class="td-order bg-blue light text-center add-border">第九节</view>
-        <view wx:if="{{item == 9}}" class="td-order bg-blue light text-center add-border">第十节</view>
-        <view wx:if="{{item == 10}}" class="td-order bg-blue light text-center add-border">十一节</view>
-        <view wx:if="{{item == 11}}" class="td-order bg-blue light text-center add-border">十二节</view>
-        <!--表的核心：课程部分-->
-        <block wx:for="{{[1, 2, 3, 4, 5, 6, 7]}}" wx:key="*this">
-          <view class="td bg-cyan light add-border">
-            <view class="cu-item" data-time="{{lastTapTime}}" bindtap="showModal" data-target="DialogModal2" >
-              <view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
-                <view class="cu-dialog"> 
-                  <view class="cu-bar bg-white justify-end">
-                    <view class="content">课程信息</view>
-                    <view class="action" bindtap="hideModal">
-                      <text class="cuIcon-close text-red"></text>
-                    </view>
-                  </view>
-                  <view class="padding-xl">
-                    {{classes.classname}}
-                  </view>
-                  <view class="cu-bar bg-white">
-                    <view class="action margin-0 flex-sub text-green ">
-                      <text class="action margin-0 flex-sub text-green solid-left">修改</text>
-                    </view>
-                    <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">返回</view>
-                  </view>
-                </view>
-              </view>
-              <text class="cuIcon-emoji lg text-gray">{{classes.classname}}</text>  
-            </view>
-          </view>
+        <block wx:for="{{[0, 1, 2, 3]}}" wx:for-item="row" wx:key="*this">
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
+          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
+        </block>
+       
+      </view>
+    </view>
+    <!--午餐-->
+    <view class="bg-cyan div-bar text-center" style="width: 100%; border-left-bottom: 4rpx solid white;">午餐</view>
+    <!--下午的课程-->
+    <view class="table grid text-center">
+      <view class="table-col" style="width: 9%;">
+        <view class="table-row text-v bg-blue light" style="height: 240rpx; line-height: 70rpx;"> 第三大节</view>
+        <view class="table-row text-v bg-blue light" style="height: 360rpx; line-height: 70rpx;"> 第四大节</view>
+      </view>
+
+      <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col" style="width: 13%;">
+        <block wx:for="{{[4, 5, 6, 7, 8]}}" wx:for-item="row" wx:key="*this" >
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
+          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
         </block>
       </view>
-      
-      <view wx:if="{{item == 3}}" class="tr bg-cyan add-border div-bar text-center">午餐</view>
-      <view wx:if="{{item == 8}}" class="tr bg-cyan add-border div-bar text-center">晚餐</view>
-    </block>
+    </view>
+    <!--晚餐-->
+    <view class="bg-cyan div-bar text-center" style="width: 100%; border-left-bottom: 4rpx solid white;">晚餐</view>
+    <!--晚上的课程-->
+    <view class="table grid text-center">
+      <view class="table-col" style="width: 9%;">
+        <view class="table-row text-v bg-blue light" style="height: 360rpx; line-height: 70rpx;"> 第五大节</view>
+      </view>
+
+      <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col" style="width: 13%;">
+        <block wx:for="{{[9, 10, 11]}}" wx:for-item="row" wx:key="*this" >
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
+          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
+        </block>
+      </view>
+    </view>
   </view>
+
+  <!--查看课程详情模态框-->
+  <view class="cu-modal {{modalName=='Check'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">{{table[curCol][curRow].className}}</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        确认这项任务已经完成了吗？
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+          <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--添加课程-->
+  <view class="cu-modal {{modalName=='Add'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">添加课程</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        确认这项任务已经完成了吗？
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+          <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>

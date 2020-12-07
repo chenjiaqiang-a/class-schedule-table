@@ -4,78 +4,81 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    classSet: {
+      type: Array
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    lastTapTime:0,
-    classes:{
-      classname:'',
-      teachername:'',
-      place:'',
-      weeks:''
-   }
+    table: [],
+    weekDays: ['星期一','星期二','星期三','星期四','星期五','星期六','星期天'],
+
+    curCol: 0,
+    curRow: 0
   },
  
+  lifetimes: {
+    ready: function () {
+      let table = []
+      for (let c = 0; c < 7; c++) {
+        let col = []
+        for (let r = 0; r < 12; r++ ) {
+          let course = {
+            hasCourse: false,
+            isBeginning: false,
+            className: "",
+            teacherName: "",
+            classType: "",
+            location: "",
+            weekDescription: "",
+            classLen: 0
+          }
+          col.push(course)
+        }
+        table.push(col)
+      }
+      for (let i = 0; i < this.properties.classSet.length; i++) {
+        let course = this.properties.classSet[i]
+        for (let j = 0; j < course.timeAndPlaceList.length; j++) {
+          let c = course.timeAndPlaceList[j].classDay
+          let r = course.timeAndPlaceList[j].classSessions
+          table[c-1][r-1].hasCourse = true
+          table[c-1][r-1].isBeginning = true
+          table[c-1][r-1].className = course.className
+          table[c-1][r-1].teacherName = course.teacherName
+          table[c-1][r-1].classType = course.classType
+          table[c-1][r-1].weekDescription = course.timeAndPlaceList[j].weekDescription
+          table[c-1][r-1].location = course.timeAndPlaceList[j].campusName + course.timeAndPlaceList[j].teachingBuildingName + course.timeAndPlaceList[j].classroomName
+          table[c-1][r-1].classLen = course.timeAndPlaceList[j].continuingSession
+          for (let k = 1; k < table[c-1][r-1].classLen; k++) {
+            table[c-1][r-1+k].hasCourse = true
+          }
+        }
+      }
+      this.setData({
+        table: table
+      })
+    }
+  },
+
   /**
    * 组件的方法列表
    */
   methods: {
     showModal(e) {
-      var curTime = e.timeStamp
-      var lastTime = e.currentTarget.dataset.time  // 通过e.currentTarget.dataset.time 访问到绑定到该组件的自定义数据
-      if (curTime - lastTime > 0) {
-        if (curTime - lastTime < 300) { // 是双击事件
-            const db = wx.cloud.database()
-            db.collection("classTable").add({
-              data:{
-                classname:"离散数学",
-                teachername:"陈瑜",
-                place:"江安一教A座A506",
-                weeks:"2-18"
-              },
-              success: res => {
-                this.setData({
-                  classes:{
-                    classname:res.classname,
-                    teachername:res.teachername,
-                    place:res.place,
-                    weeks:res.weeks
-                  }
-                }),
-                wx.showToast({
-                  title: '添加成功',
-                })
-              }
-            })
-        }
-      }
-      this.setData({
-        modalName: e.currentTarget.dataset.target,
-        lastTapTime: curTime,
-      })
+        this.setData({
+          modalName: e.currentTarget.dataset.target,
+          curCol: e.currentTarget.dataset.curcol, 
+          curRow: e.currentTarget.dataset.currow
+        })
     },
-
     hideModal(e) {
       this.setData({
         modalName: null
       })
     },
-    ChooseCheckbox(e) {
-      let items = this.data.checkbox;
-      let values = e.currentTarget.dataset.value;
-      for (let i = 0, lenI = items.length; i < lenI; ++i) {
-        if (items[i].value == values) {
-          items[i].checked = !items[i].checked;
-          break
-        }
-      }
-      this.setData({
-        checkbox: items
-      })
-    }   
-}
+  }
 })

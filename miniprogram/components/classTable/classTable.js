@@ -17,7 +17,9 @@ Component({
       teachername:'',
       place:'',
       weeks:''
-   }
+   },
+   content: "",
+   hasContent: false
   },
  
   /**
@@ -64,18 +66,38 @@ Component({
         modalName: null
       })
     },
-    ChooseCheckbox(e) {
-      let items = this.data.checkbox;
-      let values = e.currentTarget.dataset.value;
-      for (let i = 0, lenI = items.length; i < lenI; ++i) {
-        if (items[i].value == values) {
-          items[i].checked = !items[i].checked;
-          break
-        }
-      }
+    onReset: function (e) {
+      const d = new Date()
+      const date = this.formatDate(d)
+      this.hideModal()
       this.setData({
-        checkbox: items
+        content: "",
+        hasContent: false
       })
-    }   
+    },
+
+    onSubmit: function (e) {
+      this.setData({
+        loadModalAdd: true
+      })
+      const event = {
+        date: this.data.today,
+        deadline: e.detail.value.deadline,
+        content: e.detail.value.content
+      }
+      this.properties.onAdd(event)
+      setTimeout(() => {
+        const d = new Date()
+        const date = this.formatDate(d)
+        this.hideModal()
+
+        this.setData({
+          loadModalAdd: false,
+          date: date,
+          content: "",
+          hasContent: false
+        })
+      }, 500)
+    }
 }
 })

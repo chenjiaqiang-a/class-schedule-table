@@ -29,23 +29,42 @@
           <view class="td bg-cyan light add-border">
             <view class="cu-item" data-time="{{lastTapTime}}" bindtap="showModal" data-target="DialogModal2" >
               <view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
-                <view class="cu-dialog"> 
-                  <view class="cu-bar bg-white justify-end">
-                    <view class="content">课程信息</view>
-                    <view class="action" bindtap="hideModal">
-                      <text class="cuIcon-close text-red"></text>
+                <form bindsubmit="onSubmit" bindreset="onReset">
+                  <view class="cu-dialog">                  
+                    <view class="cu-bar bg-white justify-end">
+                      <view class="content">添加课程</view>
+                      <view class="action" bindtap="hideModal">
+                        <text class="cuIcon-close text-red"></text>
+                      </view>
+                    </view>
+                    <view class="padding-xl">
+                      <!--填写任务内容-->
+                      <view class="cu-form-group margin-top">
+                        <view class="title" style="margin-left:20px;">名称</view>
+                        <input name="content" placeholder="请输入你的课程名称" bindinput="onContentChange" value="{{content}}"></input>
+                      </view>
+                      <view class="cu-form-group margin-top">
+                        <view class="title">教师名</view>
+                        <input name="content" placeholder="请输入你的教师名称" bindinput="onContentChange" value="{{content}}"></input>
+                      </view>
+                      <view class="cu-form-group margin-top">
+                        <view class="title">地点</view>
+                        <input name="content" placeholder="请输入你的上课地点" bindinput="onContentChange" value="{{content}}"></input>
+                      </view>
+                      <view class="cu-form-group margin-top">
+                        <view class="title">周数</view>
+                        <input name="content" placeholder="请输入你的上课周数" bindinput="onContentChange" value="{{content}}"></input>
+                      </view>
+                    </view>
+                    <view class="cu-bar bg-white justify-end">
+                      <view class="action">
+                        <button class="cu-btn line-green text-green" form-type="reset">取消</button>
+                        <button class="cu-btn bg-green margin-left" form-type="submit"
+                        disabled="{{!hasContent}}">确定</button>
+                      </view>
                     </view>
                   </view>
-                  <view class="padding-xl">
-                    {{classes.classname}}
-                  </view>
-                  <view class="cu-bar bg-white">
-                    <view class="action margin-0 flex-sub text-green ">
-                      <text class="action margin-0 flex-sub text-green solid-left">修改</text>
-                    </view>
-                    <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">返回</view>
-                  </view>
-                </view>
+                </form>
               </view>
               <text class="cuIcon-emoji lg text-gray">{{classes.classname}}</text>  
             </view>

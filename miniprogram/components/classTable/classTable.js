@@ -29,6 +29,8 @@ Component({
           let course = {
             hasCourse: false,
             isBeginning: false,
+            _id: "",
+            classid: 0,
             className: "",
             teacherName: "",
             classType: "",
@@ -47,6 +49,8 @@ Component({
           let r = course.timeAndPlaceList[j].classSessions
           table[c-1][r-1].hasCourse = true
           table[c-1][r-1].isBeginning = true
+          table[c-1][r-1].classid = course.timeAndPlaceList[j].classid
+          table[c-1][r-1]._id = course._id
           table[c-1][r-1].className = course.className
           table[c-1][r-1].teacherName = course.teacherName
           table[c-1][r-1].classType = course.classType
@@ -69,6 +73,7 @@ Component({
    */
   methods: {
     showModal(e) {
+        console.log(e)
         this.setData({
           modalName: e.currentTarget.dataset.target,
           curCol: e.currentTarget.dataset.curcol, 

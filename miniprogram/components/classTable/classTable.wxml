@@ -13,7 +13,7 @@
         <view class="table-row bg-cyan" style="height: 70rpx; line-height: 70rpx;">{{weekDays[col]}}</view>
 
         <block wx:for="{{[0, 1, 2, 3]}}" wx:for-item="row" wx:key="*this">
-          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-_id="{{table[col][row]._id}}" data-classid="{{table[col][row].classid}}" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
           <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
         </block>
        
@@ -30,7 +30,7 @@
 
       <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col" style="width: 13%;">
         <block wx:for="{{[4, 5, 6, 7, 8]}}" wx:for-item="row" wx:key="*this" >
-          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-_id="{{table[col][row]._id}}" data-classid="{{table[col][row].classid}}" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
           <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
         </block>
       </view>
@@ -45,7 +45,7 @@
 
       <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col" style="width: 13%;">
         <block wx:for="{{[9, 10, 11]}}" wx:for-item="row" wx:key="*this" >
-          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-_id="{{table[col][row]._id}}" data-classid="{{table[col][row].classid}}" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
           <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
         </block>
       </view>

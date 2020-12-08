@@ -251,7 +251,21 @@ Page({
         })
       }
     })
-    
+    //加载用户classTable数据
+    db.collection("classTable").where({
+      _openid: app.globalData.openid
+    }).get({
+      success: res => {
+        const data = res.data
+        let orderData = []
+        for (let i = data.length - 1; i >= 0; i--) {
+          orderData.push(data[i])
+        }
+        this.setData({
+          classSet: orderData
+        })
+      }
+    })
     this.setData({
       onAddEvent: this.onAddEvent,
       onCompleteEvent: this.onCompleteEvent,
@@ -390,6 +404,15 @@ Page({
       })
     }
   }, 
+  onAddClass:function(event){
+
+  },
+  onChangeClass:function(){
+
+  },
+  onDeleteClass:function(){
+
+  },
 
   tabSelect(e) {
     this.setData({

@@ -6,6 +6,15 @@ Component({
   properties: {
     classSet: {
       type: Array
+    },
+    onAdd: {
+      type: Function
+    },
+    onChange: {
+      type: Function
+    },
+    onDelete: {
+      type: Function
     }
   },
 
@@ -80,5 +89,23 @@ Component({
         modalName: null
       })
     },
+    onAdd:function(){
+
+    },
+    onChange:function(){
+
+    },
+    onDelete: function () {
+      this.setData({
+        loadModalDel: true
+      })
+      this.properties.onDelete(this.data.noteID, this.data.eventID)
+      setTimeout(() => {
+        this.hideModal()
+        this.setData({
+          loadModalDel: false
+        })
+      }, 500)
+    }
   }
 })

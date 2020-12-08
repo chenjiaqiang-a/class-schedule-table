@@ -62,7 +62,7 @@
         </view>
       </view>
       <view class="padding-xl">
-        确认这项任务已经完成了吗？
+        {{table[curCol][curRow].className}}
       </view>
       <view class="cu-bar bg-white justify-end">
         <view class="action">
@@ -83,7 +83,7 @@
         </view>
       </view>
       <view class="padding-xl">
-        确认这项任务已经完成了吗？
+        <!--添加课程详细信息-->
       </view>
       <view class="cu-bar bg-white justify-end">
         <view class="action">

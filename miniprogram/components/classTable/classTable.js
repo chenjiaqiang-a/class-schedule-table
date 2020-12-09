@@ -104,7 +104,8 @@ Component({
       this.setData({
         loadModalDel: true
       })
-      this.properties.onDelete(this.data.noteID, this.data.eventID)
+      const course = this.data.table[this.data.curCol][this.data.curRow]
+      this.properties.onDelete(course._id, course.classid)
       setTimeout(() => {
         this.hideModal()
         this.setData({

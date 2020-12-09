@@ -271,12 +271,8 @@ Page({
     }).get({
       success: res => {
         const data = res.data
-        let orderData = []
-        for (let i = data.length - 1; i >= 0; i--) {
-          orderData.push(data[i])
-        }
         this.setData({
-          classSet: orderData
+          classSet: data
         })
       }
     })
@@ -424,7 +420,50 @@ Page({
   onChangeClass:function(){
 
   },
-  onDeleteClass:function(){
+  onDeleteClass:function(_id, classid){
+    const db = wx.cloud.database()
+    let k
+    let table = this.date.classSet
+    for(k = 0; k < table.length; k++) {
+      if (table[k]._id === _id) {
+        break
+      }
+    } 
+    if (table[k].timeAndPlaceList.length == 1) {
+      db.collection("").doc().remove({
+        success: () => {
+          let newTable = []
+          for(let i = 0; i < table.length; i++) {
+            if (i == k) {
+              continue
+            }
+            newTable.push(table[i])
+          } 
+          this.setData({
+            classSet: newTable
+          })
+        }
+      })
+    } else {
+      let l
+      let place = []
+      for (l = 0; l < table[k].timeAndPlaceList.length; l++){
+        if (table[k].timeAndPlaceList[l].classid != classid) {
+          place.push(table[k].timeAndPlaceList[l])
+        }
+      }
+      table[k].timeAndPlaceList = place
+      db.collection("").doc(_id).update({
+        data: {
+          timeAndPlaceList: place
+        },
+        success: () => {
+          this.setData({
+            classSet: table
+          })
+        }
+      })
+    }
 
   },
 

@@ -24,7 +24,44 @@ Component({
   data: {
     table: [],
     weekDays: ['星期一','星期二','星期三','星期四','星期五','星期六','星期天'],
-
+    index: null,
+    picker: ['必修', '选修'],
+    multiArray: [
+      ['望江校区', '江安校区','华西校区'],
+      ['东二教', '东三教', '基教楼A座', '基教楼C座'],
+    ],
+    objectMultiArray: [
+      [{
+          id: 0,
+          name: '望江校区'
+        },
+        {
+          id: 1,
+          name: '江安校区'
+        },
+        {
+          id: 2,
+          name: '华西校区'
+        }
+      ],
+      [{
+          id: 0,
+          name: '东二教'
+        },
+        {
+          id: 1,
+          name: '东三教'
+        },
+        {
+          id: 2,
+          name: '基教楼A座'
+        },
+        {
+          id: 3,
+          name: '基教楼C座'
+        }
+      ],
+    ],
     curCol: 0,
     curRow: 0
   },
@@ -95,7 +132,14 @@ Component({
       })
     },
     onAdd:function(){
+      setTimeout(() => {
+        this.hideModal()
 
+        this.setData({
+          loadModalAdd: false,
+          hasContent: false
+        })
+      }, 500)
     },
     onChange:function(){
 
@@ -112,6 +156,56 @@ Component({
           loadModalDel: false
         })
       }, 500)
-    }
+    },
+    onClassChange: function (e) {
+      if (e.detail.value) {
+        this.setData({
+          className: e.detail.value,
+          timeAndPlaceList: e.detail.value,
+          
+        })
+      } else {
+        this.setData({
+          className: e.detail.value,
+          timeAndPlaceList: e.detail.value,
+          
+        })
+      }
+    },
+    PickerChange(e) {
+      console.log(e);
+      this.setData({
+        index: e.detail.value
+      })
+    },
+    MultiChange(e) {
+      this.setData({
+        multiIndex: e.detail.value
+      })
+    },
+    MultiColumnChange(e) {
+      let data = {
+        multiArray: this.data.multiArray,
+        multiIndex: this.data.multiIndex
+      };
+      data.multiIndex[e.detail.column] = e.detail.value;
+      switch (e.detail.column) {
+        case 0:
+          switch (data.multiIndex[0]) {
+            case 0:
+              data.multiArray[1] = ['东二教', '东三教', '基教楼A座', '基教楼C座'];
+              break
+            case 1:
+              data.multiArray[1] = ['一教A座', '一教B座', '一教C座', '一教D座', '综合楼B座', '综合楼C座', '文科楼一区', '文科楼二区', '文科楼三区'];
+              break
+            case 2:
+              data.multiArray[1] = ['九教', '十教'];
+              break;
+          }
+          data.multiIndex[1] = 0;
+          break;
+      }
+      this.setData(data);
+    },
   }
 })

@@ -8,15 +8,19 @@
         <view class="table-row text-v bg-blue light" style="height: 240rpx; line-height: 70rpx;"> 第一大节</view>
         <view class="table-row text-v bg-blue light" style="height: 240rpx; line-height: 70rpx;"> 第二大节</view>
       </view>
-      <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col"
-        style="width: 13%;">
+      <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col" style="width: 13%;">
         <view class="table-row bg-cyan" style="height: 70rpx; line-height: 70rpx;">{{weekDays[col]}}</view>
 
         <block wx:for="{{[0, 1, 2, 3]}}" wx:for-item="row" wx:key="*this">
-          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-_id="{{table[col][row]._id}}" data-classid="{{table[col][row].classid}}" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
-          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}"
+            class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx"
+            bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">
+            {{table[col][row].className}}</view>
+          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}"
+            class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="tapEmpty"
+            data-curcol="{{col}}" data-currow="{{row}}"></view>
         </block>
-       
+
       </view>
     </view>
     <!--午餐-->
@@ -24,14 +28,19 @@
     <!--下午的课程-->
     <view class="table grid text-center">
       <view class="table-col" style="width: 9%;">
-        <view class="table-row text-v bg-blue light" style="height: 240rpx; line-height: 70rpx;"> 第三大节</view>
-        <view class="table-row text-v bg-blue light" style="height: 360rpx; line-height: 70rpx;"> 第四大节</view>
+        <view class="table-row text-v bg-blue light" style="height: 360rpx; line-height: 70rpx;"> 第三大节</view>
+        <view class="table-row text-v bg-blue light" style="height: 240rpx; line-height: 70rpx;"> 第四大节</view>
       </view>
 
       <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col" style="width: 13%;">
-        <block wx:for="{{[4, 5, 6, 7, 8]}}" wx:for-item="row" wx:key="*this" >
-          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-_id="{{table[col][row]._id}}" data-classid="{{table[col][row].classid}}" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
-          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
+        <block wx:for="{{[4, 5, 6, 7, 8]}}" wx:for-item="row" wx:key="*this">
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}"
+            class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx"
+            bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">
+            {{table[col][row].className}}</view>
+          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}"
+            class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="tapEmpty"
+            data-curcol="{{col}}" data-currow="{{row}}"></view>
         </block>
       </view>
     </view>
@@ -44,12 +53,101 @@
       </view>
 
       <view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="col" wx:key="*this" class="table-col" style="width: 13%;">
-        <block wx:for="{{[9, 10, 11]}}" wx:for-item="row" wx:key="*this" >
-          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}" class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx" bindtap="showModal" data-target="Check" data-_id="{{table[col][row]._id}}" data-classid="{{table[col][row].classid}}" data-curcol="{{col}}" data-currow="{{row}}">{{table[col][row].className}}</view>
-          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}" class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="Add" data-curcol="{{col}}" data-currow="{{row}}"></view>
+        <block wx:for="{{[9, 10, 11]}}" wx:for-item="row" wx:key="*this">
+          <view wx:if="{{table[col][row].hasCourse && table[col][row].isBeginning}}"
+            class="table-row text-v bg-mauve light" style="height: {{table[col][row].classLen * 120}}rpx"
+            bindtap="showModal" data-target="Check" data-curcol="{{col}}" data-currow="{{row}}">
+            {{table[col][row].className}}</view>
+          <view wx:if="{{!table[col][row].hasCourse && !table[col][row].isBeginning}}"
+            class="table-row text-v bg-cyan light" style="height: 120rpx;" bindtap="showModal" data-target="tapEmpty"
+            data-curcol="{{col}}" data-currow="{{row}}"></view>
         </block>
       </view>
     </view>
+  </view>
+
+  <!--确认添加模态框-->
+  <view class="cu-modal {{modalName=='tapEmpty'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">提示</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        确认在此处添加一节课吗？
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+          <button class="cu-btn bg-green margin-left" bindtap="onShowAdd">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--添加课程-->
+  <view class="cu-modal {{modalName=='Add'?'show':''}}">
+    <form bindsubmit="onSubmit" bindreset="onReset">
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+          <view class="content">添加课程</view>
+          <view class="action" bindtap="onReset">
+            <text class="cuIcon-close text-red"></text>
+          </view>
+        </view>
+        <view class="padding-xl">
+          <view class="cu-form-group margin-top">
+            <view class="title">课程名称</view>
+            <input name="className" placeholder="请输入课程名称" bindinput="onClassNameChange" value="{{className}}"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">教师姓名</view>
+            <input name="teacherName" placeholder="请输入教师姓名" bindinput="onTeacherNameChange" value="{{teacherName}}"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">课程类型</view>
+            <picker bindchange="onClassTypeChange" value="{{classTypeIndex}}" range="{{classType}}">
+              <view class="picker">
+                {{classType[classTypeIndex]}}
+              </view>
+            </picker>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">课时</view>
+            <picker bindchange="onClassLenChange" value="{{classLenIndex}}" range="{{classLen}}">
+              <view class="picker">
+                {{classLen[classLenIndex]}}
+              </view>
+            </picker>
+          </view>
+          <view class="cu-form-group">
+            <view class="title">上课地点</view>
+            <picker mode="multiSelector" bindchange="onPlaceChange" bindcolumnchange="onCampusChange"
+              value="{{placeIndex}}" range="{{placeArray}}">
+              <view class="picker">
+                {{placeArray[0][placeIndex[0]]}}{{placeArray[1][placeIndex[1]]}}
+              </view>
+            </picker>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">教室</view>
+            <input name="classroomName" placeholder="请输入教室" bindinput="onClassroomNameChange" value="{{classroomName}}"></input>
+          </view>
+        </view>
+        <view class="cu-bar bg-white justify-end">
+          <view class="action">
+            <button class="cu-btn line-green text-green" form-type="reset">取消</button>
+            <button class="cu-btn bg-green margin-left" form-type="submit" disabled="{{!className}}">确定</button>
+          </view>
+        </view>
+      </view>
+    </form>
+  </view>
+  <!--提交停顿-->
+  <view class='cu-load load-modal' wx:if="{{loadModalAdd}}">
+    <view class='cuIcon-emojifill text-orange'></view>
+    <view class='gray-text'>提交中...</view>
   </view>
 
   <!--查看课程详情模态框-->
@@ -62,12 +160,14 @@
         </view>
       </view>
       <view class="padding-xl">
-        {{table[curCol][curRow].className}}
+        <view>课程类型：{{table[curCol][curRow].classType}}</view>
+        <view>教师：{{table[curCol][curRow].teacherName}}</view>
+        <view>授课地点：{{table[curCol][curRow].location}}</view>
+        <view>课时：{{table[curCol][curRow].classLen}}</view>
       </view>
       <view class="cu-bar bg-white justify-end">
         <view class="action">
-          <button class="cu-btn line-green text-green" bindtap="showModal"
-          data-target="Delete">删除</button>
+          <button class="cu-btn line-green text-green" bindtap="onTapDelete">删除</button>
           <button class="cu-btn bg-green margin-left" bindtap="hideModal">确定</button>
         </view>
       </view>
@@ -75,11 +175,11 @@
   </view>
 
   <!-- 删除课程的模态对话框 -->
-  <view class="cu-modal {{modalName=='Delete'?'show':''}}">
+  <view class="cu-modal {{toDelete?'show':''}}">
     <view class="cu-dialog">
       <view class="cu-bar bg-white justify-end">
         <view class="content">提示</view>
-        <view class="action" bindtap="hideModal">
+        <view class="action" bindtap="notDelete">
           <text class="cuIcon-close text-red"></text>
         </view>
       </view>
@@ -88,7 +188,7 @@
       </view>
       <view class="cu-bar bg-white justify-end">
         <view class="action">
-          <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+          <button class="cu-btn line-green text-green" bindtap="notDelete">取消</button>
           <button class="cu-btn bg-green margin-left" bindtap="onDelete">确定</button>
         </view>
       </view>
@@ -98,60 +198,6 @@
   <view class='cu-load load-modal' wx:if="{{loadModalDel}}">
     <view class='cuIcon-emojifill text-orange'></view>
     <view class='gray-text'>删除中...</view>
-  </view>
-
-  <!--添加课程-->
-  <view class="cu-modal {{modalName=='Add'?'show':''}}">
-    <view class="cu-dialog">
-      <view class="cu-bar bg-white justify-end">
-        <view class="content">添加课程</view>
-        <view class="action" bindtap="hideModal">
-          <text class="cuIcon-close text-red"></text>
-        </view>
-      </view>
-      <view class="padding-xl">
-        <view class="cu-form-group margin-top">
-          <view class="title">名称</view>
-          <input name="className" placeholder="请输入你的课程名称" bindinput="onClassChange" value="{{className}}"></input>
-        </view>
-        <view class="cu-form-group margin-top">
-          <view class="title">教师名</view>
-          <input name="teacherName" placeholder="请输入你的教师名称" value="{{teacherName}}"></input>
-        </view>
-        <view class="cu-form-group margin-top">
-		      <view class="title">课程类型</view>
-		      <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-			      <view class="picker">
-				      {{index?picker[index]:'请选择课程类型'}}
-			      </view>
-		      </picker>
-	      </view>
-        <view class="cu-form-group">
-		      <view class="title">上课地点</view>
-		      <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
-		      range="{{multiArray}}">
-			      <view class="picker">
-				    {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
-			      </view>
-		      </picker>
-        </view>
-        <view class="cu-form-group margin-top">
-          <view class="title">教室名</view>
-          <input name="classroomName" placeholder="请输入你的教室名" value="{{classroomName}}"></input>
-        </view>
-      </view>
-      <view class="cu-bar bg-white justify-end">
-        <view class="action">
-          <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
-          <button class="cu-btn bg-green margin-left" bindtap="onAdd">确定</button>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!--提交停顿-->
-  <view class='cu-load load-modal' wx:if="{{loadModalAdd}}">
-    <view class='cuIcon-emojifill text-orange'></view>
-    <view class='gray-text'>提交中...</view>
   </view>
 
 </view>
